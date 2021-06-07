@@ -27,4 +27,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo $GITHUB_TOKEN | docker login --username=marwan-at-work --password-stdin https://ghcr.io
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login --username=marwan-at-work --password-stdin https://ghcr.io
+        
+      - name: Build
+        run: docker build -t ghcr.io/marwan-at-work/testb:latest .
+      
+      - name: Push
+        run: docker push ghcr.io/marwan-at-work/testb:latest
+
